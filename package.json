@@ -1,0 +1,28 @@
+{
+  "name": "ballotpedia-scraper",
+  "version": "0.0.1",
+  "description": "Node.js programs to scrape data from Ballotpedia",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kcivey/ballotpedia-scraper.git"
+  },
+  "author": "Keith C. Ivey <keith@iveys.org>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kcivey/ballotpedia-scraper/issues"
+  },
+  "homepage": "https://github.com/kcivey/ballotpedia-scraper#readme",
+  "engines": {
+    "node": ">=6"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-google": "^0.12.0",
+    "mocha": "^6.1.4",
+    "nock": "^10.0.6"
+  }
+}
