@@ -28,9 +28,9 @@
   "dependencies": {
     "cache-manager-fs": "^1.0.7",
     "cheerio": "^1.0.0-rc.3",
-    "commander": "^2.20.0",
     "js-yaml": "^3.13.1",
     "request": "^2.88.0",
-    "request-plus": "^2.0.0"
+    "request-plus": "^2.0.0",
+    "yargs": "^13.2.2"
   }
 }

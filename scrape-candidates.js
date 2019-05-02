@@ -3,7 +3,15 @@
 const URL = require('url');
 const assert = require('assert');
 const cheerio = require('cheerio');
-const program = require('commander');
+const argv = require('yargs')
+    .options({
+        house: {
+            type: 'boolean',
+            describe: 'get House candidates instead of Senate',
+        },
+    })
+    .strict(true)
+    .argv;
 const YAML = require('js-yaml');
 const request = require('./request');
 const stateAbbreviations = require('./state-abbreviations');
@@ -11,13 +19,10 @@ const year = 2020;
 const senateUrl = 'https://ballotpedia.org/United_States_Senate_elections,_' + year;
 const houseUrl = senateUrl.replace('Senate', 'House_of_Representatives');
 
-program.option('--house', 'Get House candidates instead of Senate')
-    .parse(process.argv);
-
-const promise = program.house ? processChamber('House', houseUrl) : processChamber('Senate', senateUrl);
+const promise = argv.house ? processChamber('House', houseUrl) : processChamber('Senate', senateUrl);
 promise.then(function (candidates) {
     const count = Object.values(candidates).length;
-    if (program.house) {
+    if (argv.house) {
         assert.strictEqual(count, 435, 'Should have 435 House seats');
     }
     else {
