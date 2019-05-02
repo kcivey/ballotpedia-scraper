@@ -16,6 +16,13 @@ program.option('--house', 'Get House candidates instead of Senate')
 
 const promise = program.house ? processChamber('House', houseUrl) : processChamber('Senate', senateUrl);
 promise.then(function (candidates) {
+    const count = Object.values(candidates).length;
+    if (program.house) {
+        assert.strictEqual(count, 435, 'Should have 435 House seats');
+    }
+    else {
+        assert.ok(count >= 33, 'Should have at least 33 Senate seats');
+    }
     process.stdout.write(YAML.safeDump(candidates));
 });
 
