@@ -20,17 +20,17 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^5.16.0",
-    "eslint-config-google": "^0.12.0",
-    "mocha": "^6.1.4",
+    "eslint": "^6.0.1",
+    "eslint-config-google": "^0.13.0",
+    "mocha": "^6.2.0",
     "nock": "^10.0.6"
   },
   "dependencies": {
-    "cache-manager-fs": "^1.0.7",
+    "cache-manager-fs": "^1.0.8",
     "cheerio": "^1.0.0-rc.3",
     "js-yaml": "^3.13.1",
     "request": "^2.88.0",
     "request-plus": "^2.0.0",
-    "yargs": "^13.2.2"
+    "yargs": "^13.3.0"
   }
 }
