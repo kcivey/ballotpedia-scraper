@@ -33,12 +33,14 @@ promise.then(function (candidates) {
 
 async function processChamber(chamber, url) {
     let $ = await getCheerio(url);
-    const $links = $('table.infobox small a').get().map(a => $(a));
+    const $links = $('table.infobox small a').get()
+        .map(a => $(a));
     assert(
         chamber === 'Senate' ? ($links.length >= 33) : ($links.length === 50),
         `Not enough links for ${chamber} (${$links.length})`
     );
     const candidates = {};
+    const getParent = span => $(span).parent();
     for (const $link of $links) {
         const state = $link.text().trim();
         const stateAbbr = stateAbbreviations[state];
@@ -46,7 +48,8 @@ async function processChamber(chamber, url) {
         const stateUrl = URL.resolve(url, $link.attr('href'));
         console.warn(state);
         $ = await getCheerio(stateUrl);
-        let $headers = $('[id^=District_]').get().map(span => $(span).parent());
+        let $headers = $('[id^=District_]').get()
+            .map(getParent);
         if (!$headers.length) {
             $headers = [$('#Candidates, #Candidates_and_election_results').parent()];
         }
@@ -81,10 +84,16 @@ function getCandidatesAfterHeader($header, state) {
         if ($p.is('ul')) {
             assert(typeof election !== 'undefined', `Election not found (${state})`);
             assert(typeof candidates[election] === 'undefined', `Duplicate election (${election}, ${state})`);
-            candidates[election] = $p.find('li').get().map(item => $(item).text().replace(/\xa0/g, ' ').trim());
+            candidates[election] = $p.find('li').get()
+                .map(function (item) {
+                    return $(item).text()
+                        .replace(/\xa0/g, ' ')
+                        .trim();
+                });
         }
         else {
-            const text = $p.text().replace(/\xa0/g, ' ').trim();
+            const text = $p.text().replace(/\xa0/g, ' ')
+                .trim();
             const m = text.match(/(\w+ \w+|Primary)\s+candidates$/);
             if (m) {
                 election = m[1];
@@ -104,6 +113,7 @@ function getCandidatesAfterHeader($header, state) {
         }
         $p = $p.next();
     }
+
     /*
     for (const election of ['General election', 'Democratic primary', 'Republican primary']) {
         assert(candidates[election], `Missing ${election}`);
