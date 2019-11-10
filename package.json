@@ -20,9 +20,9 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^6.4.0",
-    "mocha": "^6.2.0",
-    "nock": "^11.3.5"
+    "eslint": "^6.6.0",
+    "mocha": "^6.2.2",
+    "nock": "^11.7.0"
   },
   "dependencies": {
     "cache-manager-fs": "^1.0.8",
@@ -30,6 +30,6 @@
     "js-yaml": "^3.13.1",
     "request": "^2.88.0",
     "request-plus": "^2.0.0",
-    "yargs": "^14.0.0"
+    "yargs": "^14.2.0"
   }
 }
